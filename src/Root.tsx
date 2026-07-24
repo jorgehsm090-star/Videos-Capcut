@@ -10,6 +10,8 @@ import {
   VENTA_NOCTURNA_DURATION,
   VENTA_NOCTURNA_FPS,
   VENTA_NOCTURNA_HEIGHT,
+  VENTA_NOCTURNA_STORY_HEIGHT,
+  VENTA_NOCTURNA_STORY_WIDTH,
   VENTA_NOCTURNA_WIDTH,
 } from "./VentaNocturna";
 
@@ -36,6 +38,20 @@ export const RemotionRoot: React.FC = () => {
         fps={VENTA_NOCTURNA_FPS}
         width={VENTA_NOCTURNA_WIDTH}
         height={VENTA_NOCTURNA_HEIGHT}
+      />
+      <Composition
+        id="VentaNocturnaStory"
+        component={VentaNocturna}
+        durationInFrames={VENTA_NOCTURNA_DURATION}
+        fps={VENTA_NOCTURNA_FPS}
+        width={VENTA_NOCTURNA_STORY_WIDTH}
+        height={VENTA_NOCTURNA_STORY_HEIGHT}
+        defaultProps={{
+          width: VENTA_NOCTURNA_STORY_WIDTH,
+          height: VENTA_NOCTURNA_STORY_HEIGHT,
+          paddingTop: 230,
+          paddingBottom: 220,
+        }}
       />
     </>
   );

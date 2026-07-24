@@ -20,6 +20,9 @@ export const VENTA_NOCTURNA_FPS = 30;
 export const VENTA_NOCTURNA_WIDTH = 1080;
 export const VENTA_NOCTURNA_HEIGHT = 1480;
 
+export const VENTA_NOCTURNA_STORY_WIDTH = 1080;
+export const VENTA_NOCTURNA_STORY_HEIGHT = 1920;
+
 const SHIMMER_START = 254;
 const SHIMMER_END = 296;
 
@@ -37,7 +40,19 @@ const Divider: React.FC = () => (
   />
 );
 
-export const VentaNocturna: React.FC = () => {
+type VentaNocturnaProps = {
+  width?: number;
+  height?: number;
+  paddingTop?: number;
+  paddingBottom?: number;
+};
+
+export const VentaNocturna: React.FC<VentaNocturnaProps> = ({
+  width = VENTA_NOCTURNA_WIDTH,
+  height = VENTA_NOCTURNA_HEIGHT,
+  paddingTop = 48,
+  paddingBottom = 56,
+}) => {
   const frame = useCurrentFrame();
 
   const rippleProgress = interpolate(
@@ -72,8 +87,8 @@ export const VentaNocturna: React.FC = () => {
   return (
     <div
       style={{
-        width: VENTA_NOCTURNA_WIDTH,
-        height: VENTA_NOCTURNA_HEIGHT,
+        width,
+        height,
         position: "relative",
         overflow: "hidden",
         background:
@@ -87,7 +102,7 @@ export const VentaNocturna: React.FC = () => {
         style={{
           position: "absolute",
           left: "50%",
-          top: 480,
+          top: 480 + (paddingTop - 48),
           width: 900,
           height: 900,
           transform: "translate(-50%, -50%)",
@@ -96,11 +111,11 @@ export const VentaNocturna: React.FC = () => {
         }}
       />
 
-      <Starfield width={VENTA_NOCTURNA_WIDTH} height={VENTA_NOCTURNA_HEIGHT} />
+      <Starfield width={width} height={height} />
 
       <ShootingStar
-        width={VENTA_NOCTURNA_WIDTH}
-        height={VENTA_NOCTURNA_HEIGHT}
+        width={width}
+        height={height}
         startFrame={45}
         endFrame={85}
         fromX={0.86}
@@ -109,8 +124,8 @@ export const VentaNocturna: React.FC = () => {
         toY={0.34}
       />
       <ShootingStar
-        width={VENTA_NOCTURNA_WIDTH}
-        height={VENTA_NOCTURNA_HEIGHT}
+        width={width}
+        height={height}
         startFrame={200}
         endFrame={236}
         fromX={0.1}
@@ -179,7 +194,7 @@ export const VentaNocturna: React.FC = () => {
           alignItems: "center",
           width: "100%",
           height: "100%",
-          padding: "48px 64px 56px",
+          padding: `${paddingTop}px 64px ${paddingBottom}px`,
           boxSizing: "border-box",
         }}
       >
