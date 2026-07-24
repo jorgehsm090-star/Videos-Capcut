@@ -419,8 +419,8 @@ export const VentaNocturna: React.FC = () => {
               }}
             >
               <QRCodeSVG
-                value="https://www.instagram.com/aldeahortusoficial"
-                size={128}
+                value="https://docs.google.com/forms/d/e/1FAIpQLSd5b5SYjkptF6o3etGT6huvJHUiam2FI1lgA1RXiO6PRPw7ug/viewform?pli=1"
+                size={168}
                 bgColor="#ffffff"
                 fgColor="#0b1a24"
                 level="H"
@@ -431,16 +431,16 @@ export const VentaNocturna: React.FC = () => {
                   left: "50%",
                   top: "50%",
                   transform: "translate(-50%, -50%)",
-                  width: 30,
-                  height: 30,
-                  borderRadius: 6,
+                  width: 36,
+                  height: 36,
+                  borderRadius: 7,
                   background: "#ffffff",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
               >
-                <GiDinosaurRex size={20} color="#0b1a24" />
+                <GiDinosaurRex size={24} color="#0b1a24" />
               </div>
             </div>
             <div
@@ -450,7 +450,7 @@ export const VentaNocturna: React.FC = () => {
                 letterSpacing: 0.5,
                 marginTop: 8,
                 textAlign: "center",
-                width: 152,
+                width: 192,
                 lineHeight: 1.3,
               }}
             >
