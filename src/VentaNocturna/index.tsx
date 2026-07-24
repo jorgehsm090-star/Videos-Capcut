@@ -12,6 +12,7 @@ import { Img, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { bodyFontFamily, titleFontFamily } from "./fonts";
 import { Starfield } from "./Starfield";
 import { Moon } from "./Moon";
+import { BowRibbon } from "./BowRibbon";
 import { ShootingStar } from "./ShootingStar";
 import { CLICK_RIPPLE_END, CLICK_RIPPLE_START, LocationPointer } from "./LocationPointer";
 
@@ -237,6 +238,16 @@ export const VentaNocturna: React.FC = () => {
           <div
             style={{
               position: "absolute",
+              top: -30,
+              right: 44,
+              zIndex: 2,
+            }}
+          >
+            <BowRibbon size={120} />
+          </div>
+          <div
+            style={{
+              position: "absolute",
               inset: 0,
               display: "flex",
               flexDirection: "column",
@@ -250,9 +261,9 @@ export const VentaNocturna: React.FC = () => {
                   style={{
                     fontFamily: titleFontFamily,
                     fontWeight: 700,
-                    fontSize: word === "VENTA" ? 88 : 72,
+                    fontSize: word === "VENTA" ? 98 : 80,
                     color: MOON_YELLOW,
-                    letterSpacing: word === "VENTA" ? 10 : 7,
+                    letterSpacing: word === "VENTA" ? 6 : 3,
                     textShadow: shimmerActive
                       ? `0 3px 4px rgba(10,18,26,0.55), 0 0 ${
                           20 * shimmerGlow
@@ -270,8 +281,8 @@ export const VentaNocturna: React.FC = () => {
                       inset: 0,
                       fontFamily: titleFontFamily,
                       fontWeight: 700,
-                      fontSize: word === "VENTA" ? 88 : 72,
-                      letterSpacing: word === "VENTA" ? 10 : 7,
+                      fontSize: word === "VENTA" ? 98 : 80,
+                      letterSpacing: word === "VENTA" ? 6 : 3,
                       transform: `scale(${shimmerScale})`,
                       backgroundImage:
                         "linear-gradient(100deg, rgba(255,245,210,0) 30%, rgba(255,250,225,0.95) 48%, rgba(255,245,210,0) 66%)",

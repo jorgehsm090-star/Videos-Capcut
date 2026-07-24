@@ -1,8 +1,8 @@
-import { loadFont as loadCinzel } from "@remotion/google-fonts/Cinzel";
+import { loadFont as loadCinzelDecorative } from "@remotion/google-fonts/CinzelDecorative";
 import { loadFont as loadPoppins } from "@remotion/google-fonts/Poppins";
 
-export const { fontFamily: titleFontFamily } = loadCinzel("normal", {
-  weights: ["600", "700"],
+export const { fontFamily: titleFontFamily } = loadCinzelDecorative("normal", {
+  weights: ["700", "900"],
   subsets: ["latin"],
 });
 
