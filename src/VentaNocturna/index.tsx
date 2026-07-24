@@ -1,16 +1,14 @@
 import React from "react";
 import { QRCodeSVG } from "qrcode.react";
 import {
-  FaBuilding,
   FaFacebook,
-  FaFeatherAlt,
   FaInstagram,
   FaMapMarkerAlt,
   FaRegClock,
   FaWhatsapp,
 } from "react-icons/fa";
 import { GiDinosaurRex, GiPalmTree } from "react-icons/gi";
-import { interpolate, useCurrentFrame } from "remotion";
+import { Img, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { bodyFontFamily, titleFontFamily } from "./fonts";
 import { Starfield } from "./Starfield";
 import { Moon } from "./Moon";
@@ -190,37 +188,25 @@ export const VentaNocturna: React.FC = () => {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 34,
+            gap: 26,
             marginBottom: 26,
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <FaFeatherAlt size={30} color="#ffffff" />
-            <div
-              style={{
-                fontFamily: bodyFontFamily,
-                fontWeight: 700,
-                fontSize: 22,
-                letterSpacing: 1,
-              }}
-            >
-              ALDEA HORTUS
-            </div>
-          </div>
+          <Img
+            src={staticFile("logo-aldea-hortus.png")}
+            style={{ height: 54, width: "auto" }}
+          />
           <div
             style={{
               width: 1,
-              height: 34,
+              height: 40,
               background: "rgba(255,255,255,0.3)",
             }}
           />
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <FaBuilding size={22} color="#ffffff" />
-            <div style={{ fontSize: 13, lineHeight: 1.15, opacity: 0.85 }}>
-              <div>Ingeniería</div>
-              <div>Mexicana</div>
-            </div>
-          </div>
+          <Img
+            src={staticFile("logo-ingenieria-mexicana.png")}
+            style={{ height: 48, width: "auto" }}
+          />
         </div>
 
         <div
