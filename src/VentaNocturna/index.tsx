@@ -47,6 +47,7 @@ type VentaNocturnaProps = {
   paddingTop?: number;
   paddingBottom?: number;
   showProfileCard?: boolean;
+  profileCardY?: number;
 };
 
 export const VentaNocturna: React.FC<VentaNocturnaProps> = ({
@@ -55,6 +56,7 @@ export const VentaNocturna: React.FC<VentaNocturnaProps> = ({
   paddingTop = 48,
   paddingBottom = 56,
   showProfileCard = true,
+  profileCardY = 70,
 }) => {
   const frame = useCurrentFrame();
 
@@ -191,7 +193,7 @@ export const VentaNocturna: React.FC<VentaNocturnaProps> = ({
       {showProfileCard ? (
         <ProfileCard
           x={800}
-          y={70}
+          y={profileCardY}
           width={260}
           height={360}
           photoSrc={staticFile("agent-graciano.jpg")}

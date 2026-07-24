@@ -51,7 +51,8 @@ export const RemotionRoot: React.FC = () => {
           height: VENTA_NOCTURNA_STORY_HEIGHT,
           paddingTop: 230,
           paddingBottom: 220,
-          showProfileCard: false,
+          showProfileCard: true,
+          profileCardY: 240,
         }}
       />
     </>
