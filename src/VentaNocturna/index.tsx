@@ -25,6 +25,7 @@ const SHIMMER_START = 254;
 const SHIMMER_END = 296;
 
 const TEAL = "#5fd8e6";
+const MOON_YELLOW = "#e8d9a3";
 
 const Divider: React.FC = () => (
   <div
@@ -240,13 +241,13 @@ export const VentaNocturna: React.FC = () => {
                 <div
                   style={{
                     fontFamily: titleFontFamily,
-                    fontWeight: 800,
+                    fontWeight: 400,
                     fontSize: word === "VENTA" ? 92 : 76,
-                    color: "#ffffff",
+                    color: MOON_YELLOW,
                     WebkitTextStroke: "3px #0a1c26",
                     letterSpacing: 1,
                     textShadow: shimmerActive
-                      ? `0 0 ${18 * shimmerGlow}px rgba(255,255,255,${
+                      ? `0 0 ${18 * shimmerGlow}px rgba(255,240,190,${
                           0.9 * shimmerGlow
                         })`
                       : "0 4px 10px rgba(0,0,0,0.35)",
@@ -261,12 +262,12 @@ export const VentaNocturna: React.FC = () => {
                       position: "absolute",
                       inset: 0,
                       fontFamily: titleFontFamily,
-                      fontWeight: 800,
+                      fontWeight: 400,
                       fontSize: word === "VENTA" ? 92 : 76,
                       letterSpacing: 1,
                       transform: `scale(${shimmerScale})`,
                       backgroundImage:
-                        "linear-gradient(100deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.95) 48%, rgba(255,255,255,0) 66%)",
+                        "linear-gradient(100deg, rgba(255,245,210,0) 30%, rgba(255,250,225,0.95) 48%, rgba(255,245,210,0) 66%)",
                       backgroundSize: "300% 100%",
                       backgroundPositionX: `${shimmerX}%`,
                       backgroundPositionY: "0%",

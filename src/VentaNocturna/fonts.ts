@@ -1,8 +1,8 @@
-import { loadFont as loadBaloo } from "@remotion/google-fonts/Baloo2";
+import { loadFont as loadArchivoBlack } from "@remotion/google-fonts/ArchivoBlack";
 import { loadFont as loadPoppins } from "@remotion/google-fonts/Poppins";
 
-export const { fontFamily: titleFontFamily } = loadBaloo("normal", {
-  weights: ["700", "800"],
+export const { fontFamily: titleFontFamily } = loadArchivoBlack("normal", {
+  weights: ["400"],
   subsets: ["latin"],
 });
 
