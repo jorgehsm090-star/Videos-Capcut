@@ -9,11 +9,12 @@ import {
   FaRegClock,
   FaWhatsapp,
 } from "react-icons/fa";
-import { GiPalmTree } from "react-icons/gi";
+import { GiDinosaurRex, GiPalmTree } from "react-icons/gi";
 import { interpolate, useCurrentFrame } from "remotion";
 import { bodyFontFamily, titleFontFamily } from "./fonts";
 import { Starfield } from "./Starfield";
 import { Moon } from "./Moon";
+import { ShootingStar } from "./ShootingStar";
 import { CLICK_RIPPLE_END, CLICK_RIPPLE_START, LocationPointer } from "./LocationPointer";
 
 export const VENTA_NOCTURNA_DURATION = 300;
@@ -98,6 +99,27 @@ export const VentaNocturna: React.FC = () => {
       />
 
       <Starfield width={VENTA_NOCTURNA_WIDTH} height={VENTA_NOCTURNA_HEIGHT} />
+
+      <ShootingStar
+        width={VENTA_NOCTURNA_WIDTH}
+        height={VENTA_NOCTURNA_HEIGHT}
+        startFrame={45}
+        endFrame={85}
+        fromX={0.86}
+        fromY={0.06}
+        toX={0.08}
+        toY={0.34}
+      />
+      <ShootingStar
+        width={VENTA_NOCTURNA_WIDTH}
+        height={VENTA_NOCTURNA_HEIGHT}
+        startFrame={200}
+        endFrame={236}
+        fromX={0.1}
+        fromY={0.1}
+        toX={0.78}
+        toY={0.3}
+      />
 
       {/* decorative skyline / palms */}
       <div
@@ -241,16 +263,15 @@ export const VentaNocturna: React.FC = () => {
                 <div
                   style={{
                     fontFamily: titleFontFamily,
-                    fontWeight: 400,
-                    fontSize: word === "VENTA" ? 92 : 76,
+                    fontWeight: 700,
+                    fontSize: word === "VENTA" ? 88 : 72,
                     color: MOON_YELLOW,
-                    WebkitTextStroke: "3px #0a1c26",
-                    letterSpacing: 1,
+                    letterSpacing: word === "VENTA" ? 10 : 7,
                     textShadow: shimmerActive
-                      ? `0 0 ${18 * shimmerGlow}px rgba(255,240,190,${
-                          0.9 * shimmerGlow
-                        })`
-                      : "0 4px 10px rgba(0,0,0,0.35)",
+                      ? `0 3px 4px rgba(10,18,26,0.55), 0 0 ${
+                          20 * shimmerGlow
+                        }px rgba(255,240,190,${0.9 * shimmerGlow})`
+                      : "0 3px 4px rgba(10,18,26,0.55), 0 1px 0 rgba(10,18,26,0.4), 0 0 26px rgba(10,18,26,0.25)",
                     transform: `scale(${shimmerActive ? shimmerScale : 1})`,
                   }}
                 >
@@ -262,9 +283,9 @@ export const VentaNocturna: React.FC = () => {
                       position: "absolute",
                       inset: 0,
                       fontFamily: titleFontFamily,
-                      fontWeight: 400,
-                      fontSize: word === "VENTA" ? 92 : 76,
-                      letterSpacing: 1,
+                      fontWeight: 700,
+                      fontSize: word === "VENTA" ? 88 : 72,
+                      letterSpacing: word === "VENTA" ? 10 : 7,
                       transform: `scale(${shimmerScale})`,
                       backgroundImage:
                         "linear-gradient(100deg, rgba(255,245,210,0) 30%, rgba(255,250,225,0.95) 48%, rgba(255,245,210,0) 66%)",
@@ -391,6 +412,7 @@ export const VentaNocturna: React.FC = () => {
             </div>
             <div
               style={{
+                position: "relative",
                 background: "#ffffff",
                 borderRadius: 16,
                 padding: 12,
@@ -401,7 +423,25 @@ export const VentaNocturna: React.FC = () => {
                 size={128}
                 bgColor="#ffffff"
                 fgColor="#0b1a24"
+                level="H"
               />
+              <div
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: 30,
+                  height: 30,
+                  borderRadius: 6,
+                  background: "#ffffff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <GiDinosaurRex size={20} color="#0b1a24" />
+              </div>
             </div>
             <div
               style={{
