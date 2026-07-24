@@ -12,7 +12,6 @@ import { Img, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { bodyFontFamily, titleFontFamily } from "./fonts";
 import { Starfield } from "./Starfield";
 import { Moon } from "./Moon";
-import { BowRibbon } from "./BowRibbon";
 import { ShootingStar } from "./ShootingStar";
 import { CLICK_RIPPLE_END, CLICK_RIPPLE_START, LocationPointer } from "./LocationPointer";
 
@@ -235,16 +234,6 @@ export const VentaNocturna: React.FC = () => {
           }}
         >
           <Moon size={460} />
-          <div
-            style={{
-              position: "absolute",
-              top: -30,
-              right: 44,
-              zIndex: 2,
-            }}
-          >
-            <BowRibbon size={120} />
-          </div>
           <div
             style={{
               position: "absolute",
