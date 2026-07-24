@@ -12,6 +12,7 @@ import { Img, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { bodyFontFamily, titleFontFamily } from "./fonts";
 import { Starfield } from "./Starfield";
 import { Moon } from "./Moon";
+import { ProfileCard } from "./ProfileCard";
 import { ShootingStar } from "./ShootingStar";
 import { CLICK_RIPPLE_END, CLICK_RIPPLE_START, LocationPointer } from "./LocationPointer";
 
@@ -45,6 +46,7 @@ type VentaNocturnaProps = {
   height?: number;
   paddingTop?: number;
   paddingBottom?: number;
+  showProfileCard?: boolean;
 };
 
 export const VentaNocturna: React.FC<VentaNocturnaProps> = ({
@@ -52,6 +54,7 @@ export const VentaNocturna: React.FC<VentaNocturnaProps> = ({
   height = VENTA_NOCTURNA_HEIGHT,
   paddingTop = 48,
   paddingBottom = 56,
+  showProfileCard = true,
 }) => {
   const frame = useCurrentFrame();
 
@@ -184,6 +187,19 @@ export const VentaNocturna: React.FC<VentaNocturnaProps> = ({
         </div>
         <GiPalmTree size={130} color="#04141d" style={{ marginRight: -10 }} />
       </div>
+
+      {showProfileCard ? (
+        <ProfileCard
+          x={800}
+          y={70}
+          width={260}
+          height={360}
+          photoSrc={staticFile("agent-graciano.jpg")}
+          name="Graciano Aldazaba"
+          title="MASTER BROKER"
+          frameColor="#4DD0E1"
+        />
+      ) : null}
 
       {/* content */}
       <div
