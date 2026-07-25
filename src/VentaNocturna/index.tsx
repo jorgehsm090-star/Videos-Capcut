@@ -490,7 +490,7 @@ export const VentaNocturna: React.FC<VentaNocturnaProps> = ({
           >
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <FaWhatsapp size={22} color={TEAL} />
-              <div style={{ fontSize: 21 }}>(322) 116 3013</div>
+              <div style={{ fontSize: 21 }}>(322) 323 9442</div>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <FaInstagram size={22} color={TEAL} />
