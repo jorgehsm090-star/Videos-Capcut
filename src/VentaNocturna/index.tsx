@@ -2,13 +2,20 @@ import React from "react";
 import { QRCodeSVG } from "qrcode.react";
 import {
   FaFacebook,
+  FaFire,
   FaInstagram,
   FaMapMarkerAlt,
   FaRegClock,
   FaWhatsapp,
 } from "react-icons/fa";
 import { GiDinosaurRex, GiPalmTree } from "react-icons/gi";
-import { Img, interpolate, staticFile, useCurrentFrame } from "remotion";
+import {
+  Img,
+  interpolate,
+  staticFile,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import { bodyFontFamily, titleFontFamily } from "./fonts";
 import { Starfield } from "./Starfield";
 import { Moon } from "./Moon";
@@ -29,6 +36,7 @@ const SHIMMER_END = 296;
 
 const TEAL = "#5fd8e6";
 const MOON_YELLOW = "#e8d9a3";
+const URGENT = "#ff5a3c";
 
 const Divider: React.FC = () => (
   <div
@@ -48,6 +56,9 @@ type VentaNocturnaProps = {
   paddingBottom?: number;
   showProfileCard?: boolean;
   profileCardY?: number;
+  showLocation?: boolean;
+  showFooter?: boolean;
+  showUrgency?: boolean;
 };
 
 export const VentaNocturna: React.FC<VentaNocturnaProps> = ({
@@ -57,8 +68,17 @@ export const VentaNocturna: React.FC<VentaNocturnaProps> = ({
   paddingBottom = 56,
   showProfileCard = true,
   profileCardY = 70,
+  showLocation = true,
+  showFooter = true,
+  showUrgency = false,
 }) => {
   const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const urgencyT = frame / fps;
+  const urgencyPulse = (Math.sin((2 * Math.PI * urgencyT) / 1.4) + 1) / 2;
+  const urgencyScale = 1 + urgencyPulse * 0.06;
+  const urgencyGlow = 0.4 + urgencyPulse * 0.5;
 
   const rippleProgress = interpolate(
     frame,
@@ -210,6 +230,7 @@ export const VentaNocturna: React.FC<VentaNocturnaProps> = ({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          justifyContent: showFooter ? "flex-start" : "center",
           width: "100%",
           height: "100%",
           padding: `${paddingTop}px 64px ${paddingBottom}px`,
@@ -370,142 +391,191 @@ export const VentaNocturna: React.FC<VentaNocturnaProps> = ({
           </div>
         </div>
 
-        <Divider />
+        {showLocation ? (
+          <>
+            <Divider />
 
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <FaMapMarkerAlt size={24} color={TEAL} />
-          <div style={{ fontSize: 22, opacity: 0.95 }}>
-            Av. 12 de Octubre No. 72 Tondoroque, Badeba, Nayarit.
-          </div>
-        </div>
-
-        {/* ubicacion button */}
-        <div
-          style={{
-            position: "relative",
-            marginTop: 30,
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              borderRadius: 999,
-              border: `2px solid ${TEAL}`,
-              transform: `scale(${rippleScale})`,
-              opacity: rippleOpacity,
-              pointerEvents: "none",
-            }}
-          />
-          <div
-            style={{
-              border: `2px solid ${TEAL}`,
-              borderRadius: 999,
-              padding: "16px 54px",
-              background: "rgba(8,24,32,0.55)",
-              fontWeight: 800,
-              fontSize: 27,
-              letterSpacing: 1,
-              color: "#eafcff",
-            }}
-          >
-            UBICACIÓN
-          </div>
-          <LocationPointer />
-        </div>
-
-        {/* footer */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
-            width: "100%",
-            marginTop: "auto",
-            paddingTop: 34,
-          }}
-        >
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-            <div style={{ fontWeight: 800, fontSize: 26, marginBottom: 10 }}>
-              RSVP
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <FaMapMarkerAlt size={24} color={TEAL} />
+              <div style={{ fontSize: 22, opacity: 0.95 }}>
+                Av. 12 de Octubre No. 72 Tondoroque, Badeba, Nayarit.
+              </div>
             </div>
+
+            {/* ubicacion button */}
             <div
               style={{
                 position: "relative",
-                background: "#ffffff",
-                borderRadius: 16,
-                padding: 12,
+                marginTop: 30,
               }}
             >
-              <QRCodeSVG
-                value="https://docs.google.com/forms/d/e/1FAIpQLSd5b5SYjkptF6o3etGT6huvJHUiam2FI1lgA1RXiO6PRPw7ug/viewform?pli=1"
-                size={168}
-                bgColor="#ffffff"
-                fgColor="#0b1a24"
-                level="H"
-              />
               <div
                 style={{
                   position: "absolute",
-                  left: "50%",
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
-                  width: 36,
-                  height: 36,
-                  borderRadius: 7,
-                  background: "#ffffff",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  inset: 0,
+                  borderRadius: 999,
+                  border: `2px solid ${TEAL}`,
+                  transform: `scale(${rippleScale})`,
+                  opacity: rippleOpacity,
+                  pointerEvents: "none",
+                }}
+              />
+              <div
+                style={{
+                  border: `2px solid ${TEAL}`,
+                  borderRadius: 999,
+                  padding: "16px 54px",
+                  background: "rgba(8,24,32,0.55)",
+                  fontWeight: 800,
+                  fontSize: 27,
+                  letterSpacing: 1,
+                  color: "#eafcff",
                 }}
               >
-                <GiDinosaurRex size={24} color="#0b1a24" />
+                UBICACIÓN
               </div>
+              <LocationPointer />
+            </div>
+          </>
+        ) : null}
+
+        {showUrgency ? (
+          <div
+            style={{
+              marginTop: 44,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 16,
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                background: URGENT,
+                color: "#210900",
+                fontWeight: 800,
+                fontSize: 34,
+                letterSpacing: 1,
+                padding: "14px 38px",
+                borderRadius: 999,
+                transform: `scale(${urgencyScale})`,
+                boxShadow: `0 0 ${18 + urgencyPulse * 26}px rgba(255,90,60,${urgencyGlow})`,
+              }}
+            >
+              <FaFire size={28} color="#210900" />
+              ¡HOY ES EL DÍA!
             </div>
             <div
               style={{
-                fontSize: 13,
-                fontWeight: 700,
-                letterSpacing: 0.5,
-                marginTop: 8,
+                fontSize: 25,
+                fontWeight: 600,
                 textAlign: "center",
-                width: 192,
-                lineHeight: 1.3,
+                maxWidth: 640,
+                color: "#ffe1d4",
+                opacity: 0.95,
               }}
             >
-              ESCANEA Y RESERVA
-              <br />
-              TU LUGAR
+              No dejes pasar esta noche única en Aldea Hortus
             </div>
           </div>
+        ) : null}
 
+        {showFooter ? (
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
-              gap: 12,
-              alignItems: "flex-start",
-              paddingBottom: 30,
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              width: "100%",
+              marginTop: "auto",
+              paddingTop: 34,
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <FaWhatsapp size={22} color={TEAL} />
-              <div style={{ fontSize: 21 }}>(322) 323 9442</div>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <FaInstagram size={22} color={TEAL} />
-              <div style={{ fontSize: 21, textDecoration: "underline" }}>
-                aldeahortusoficial
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+              <div style={{ fontWeight: 800, fontSize: 26, marginBottom: 10 }}>
+                RSVP
+              </div>
+              <div
+                style={{
+                  position: "relative",
+                  background: "#ffffff",
+                  borderRadius: 16,
+                  padding: 12,
+                }}
+              >
+                <QRCodeSVG
+                  value="https://docs.google.com/forms/d/e/1FAIpQLSd5b5SYjkptF6o3etGT6huvJHUiam2FI1lgA1RXiO6PRPw7ug/viewform?pli=1"
+                  size={168}
+                  bgColor="#ffffff"
+                  fgColor="#0b1a24"
+                  level="H"
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "50%",
+                    top: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: 36,
+                    height: 36,
+                    borderRadius: 7,
+                    background: "#ffffff",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <GiDinosaurRex size={24} color="#0b1a24" />
+                </div>
+              </div>
+              <div
+                style={{
+                  fontSize: 13,
+                  fontWeight: 700,
+                  letterSpacing: 0.5,
+                  marginTop: 8,
+                  textAlign: "center",
+                  width: 192,
+                  lineHeight: 1.3,
+                }}
+              >
+                ESCANEA Y RESERVA
+                <br />
+                TU LUGAR
               </div>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <FaFacebook size={22} color={TEAL} />
-              <div style={{ fontSize: 21, textDecoration: "underline" }}>
-                Aldea Hortus
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 12,
+                alignItems: "flex-start",
+                paddingBottom: 30,
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <FaWhatsapp size={22} color={TEAL} />
+                <div style={{ fontSize: 21 }}>(322) 323 9442</div>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <FaInstagram size={22} color={TEAL} />
+                <div style={{ fontSize: 21, textDecoration: "underline" }}>
+                  aldeahortusoficial
+                </div>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <FaFacebook size={22} color={TEAL} />
+                <div style={{ fontSize: 21, textDecoration: "underline" }}>
+                  Aldea Hortus
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </div>
   );

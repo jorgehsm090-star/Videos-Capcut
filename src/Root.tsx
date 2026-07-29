@@ -55,6 +55,25 @@ export const RemotionRoot: React.FC = () => {
           profileCardY: 240,
         }}
       />
+      <Composition
+        id="VentaNocturnaHoyStory"
+        component={VentaNocturna}
+        durationInFrames={VENTA_NOCTURNA_DURATION}
+        fps={VENTA_NOCTURNA_FPS}
+        width={VENTA_NOCTURNA_STORY_WIDTH}
+        height={VENTA_NOCTURNA_STORY_HEIGHT}
+        defaultProps={{
+          width: VENTA_NOCTURNA_STORY_WIDTH,
+          height: VENTA_NOCTURNA_STORY_HEIGHT,
+          paddingTop: 230,
+          paddingBottom: 220,
+          showProfileCard: true,
+          profileCardY: 240,
+          showLocation: false,
+          showFooter: false,
+          showUrgency: true,
+        }}
+      />
     </>
   );
 };
