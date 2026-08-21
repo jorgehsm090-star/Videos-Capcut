@@ -14,6 +14,13 @@ import {
   VENTA_NOCTURNA_STORY_WIDTH,
   VENTA_NOCTURNA_WIDTH,
 } from "./VentaNocturna";
+import {
+  RealEstateFlyer,
+  REAL_ESTATE_FLYER_DURATION,
+  REAL_ESTATE_FLYER_FPS,
+  REAL_ESTATE_FLYER_HEIGHT,
+  REAL_ESTATE_FLYER_WIDTH,
+} from "./RealEstateFlyer";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -73,6 +80,14 @@ export const RemotionRoot: React.FC = () => {
           showFooter: false,
           showUrgency: true,
         }}
+      />
+      <Composition
+        id="RealEstateFlyer"
+        component={RealEstateFlyer}
+        durationInFrames={REAL_ESTATE_FLYER_DURATION}
+        fps={REAL_ESTATE_FLYER_FPS}
+        width={REAL_ESTATE_FLYER_WIDTH}
+        height={REAL_ESTATE_FLYER_HEIGHT}
       />
     </>
   );
